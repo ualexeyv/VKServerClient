@@ -14,6 +14,11 @@
 		4B0CFD302694819C009CF027 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CFD2F2694819C009CF027 /* Assets.xcassets */; };
 		4B0CFD332694819C009CF027 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CFD312694819C009CF027 /* LaunchScreen.storyboard */; };
 		4B0CFD3F2694831F009CF027 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFD3E2694831F009CF027 /* Session.swift */; };
+		4B0CFD452697FE50009CF027 /* VKAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFD442697FE50009CF027 /* VKAuthViewController.swift */; };
+		4B0CFD4926981193009CF027 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFD4826981192009CF027 /* APIService.swift */; };
+		4B0CFD4D26981CA1009CF027 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFD4C26981CA1009CF027 /* FriendsViewController.swift */; };
+		4B0CFD5226981CD6009CF027 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFD5126981CD6009CF027 /* GroupsViewController.swift */; };
+		4B0CFD57269822CA009CF027 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFD56269822C9009CF027 /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,11 @@
 		4B0CFD322694819C009CF027 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B0CFD342694819C009CF027 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B0CFD3E2694831F009CF027 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		4B0CFD442697FE50009CF027 /* VKAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKAuthViewController.swift; sourceTree = "<group>"; };
+		4B0CFD4826981192009CF027 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		4B0CFD4C26981CA1009CF027 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		4B0CFD5126981CD6009CF027 /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
+		4B0CFD56269822C9009CF027 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,11 +79,16 @@
 		4B0CFD3B26948206009CF027 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4B0CFD5026981CB1009CF027 /* Group */,
+				4B0CFD4B26981C83009CF027 /* Friends */,
 				4B0CFD2A26948197009CF027 /* ViewController.swift */,
 				4B0CFD2C26948197009CF027 /* Main.storyboard */,
 				4B0CFD2F2694819C009CF027 /* Assets.xcassets */,
 				4B0CFD312694819C009CF027 /* LaunchScreen.storyboard */,
 				4B0CFD342694819C009CF027 /* Info.plist */,
+				4B0CFD442697FE50009CF027 /* VKAuthViewController.swift */,
+				4B0CFD4826981192009CF027 /* APIService.swift */,
+				4B0CFD56269822C9009CF027 /* Logger.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -84,6 +99,22 @@
 				4B0CFD3E2694831F009CF027 /* Session.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		4B0CFD4B26981C83009CF027 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				4B0CFD4C26981CA1009CF027 /* FriendsViewController.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		4B0CFD5026981CB1009CF027 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				4B0CFD5126981CD6009CF027 /* GroupsViewController.swift */,
+			);
+			path = Group;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,7 +188,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B0CFD3F2694831F009CF027 /* Session.swift in Sources */,
+				4B0CFD4926981193009CF027 /* APIService.swift in Sources */,
+				4B0CFD452697FE50009CF027 /* VKAuthViewController.swift in Sources */,
 				4B0CFD2B26948197009CF027 /* ViewController.swift in Sources */,
+				4B0CFD57269822CA009CF027 /* Logger.swift in Sources */,
+				4B0CFD5226981CD6009CF027 /* GroupsViewController.swift in Sources */,
+				4B0CFD4D26981CA1009CF027 /* FriendsViewController.swift in Sources */,
 				4B0CFD2726948197009CF027 /* AppDelegate.swift in Sources */,
 				4B0CFD2926948197009CF027 /* SceneDelegate.swift in Sources */,
 			);

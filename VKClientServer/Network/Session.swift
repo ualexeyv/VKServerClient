@@ -13,3 +13,4 @@ class Session {
     var token: String = ""
     var userId: Int = 7831620
 }
+
