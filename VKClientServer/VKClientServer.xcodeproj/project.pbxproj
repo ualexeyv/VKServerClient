@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,9 +19,16 @@
 		4B0CFD4D26981CA1009CF027 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFD4C26981CA1009CF027 /* FriendsViewController.swift */; };
 		4B0CFD5226981CD6009CF027 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFD5126981CD6009CF027 /* GroupsViewController.swift */; };
 		4B0CFD57269822CA009CF027 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFD56269822C9009CF027 /* Logger.swift */; };
+		4B0CFD5A269C1D20009CF027 /* FriendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFD59269C1D1E009CF027 /* FriendsViewCell.swift */; };
+		4B0CFD60269D550D009CF027 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFD5F269D550C009CF027 /* Friends.swift */; };
+		4B0CFD63269D624E009CF027 /* URLconverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFD62269D624D009CF027 /* URLconverter.swift */; };
+		4B0CFD6A269E9F44009CF027 /* GroupsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFD69269E9F43009CF027 /* GroupsViewCell.swift */; };
+		4B0CFD6D269EA865009CF027 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFD6C269EA865009CF027 /* Groups.swift */; };
+		C744AFC3AD5085B6C61487DC /* Pods_VKClientServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E2A8528F3116A47EF5200B8 /* Pods_VKClientServer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		45F1DD9EFABF6113FBD8DA33 /* Pods-VKClientServer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKClientServer.debug.xcconfig"; path = "Target Support Files/Pods-VKClientServer/Pods-VKClientServer.debug.xcconfig"; sourceTree = "<group>"; };
 		4B0CFD2326948197009CF027 /* VKClientServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKClientServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B0CFD2626948197009CF027 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B0CFD2826948197009CF027 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +43,13 @@
 		4B0CFD4C26981CA1009CF027 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		4B0CFD5126981CD6009CF027 /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
 		4B0CFD56269822C9009CF027 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		4B0CFD59269C1D1E009CF027 /* FriendsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewCell.swift; sourceTree = "<group>"; };
+		4B0CFD5F269D550C009CF027 /* Friends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
+		4B0CFD62269D624D009CF027 /* URLconverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLconverter.swift; sourceTree = "<group>"; };
+		4B0CFD69269E9F43009CF027 /* GroupsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewCell.swift; sourceTree = "<group>"; };
+		4B0CFD6C269EA865009CF027 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
+		710CB09145AAC765BE2AC523 /* Pods-VKClientServer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKClientServer.release.xcconfig"; path = "Target Support Files/Pods-VKClientServer/Pods-VKClientServer.release.xcconfig"; sourceTree = "<group>"; };
+		8E2A8528F3116A47EF5200B8 /* Pods_VKClientServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKClientServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C744AFC3AD5085B6C61487DC /* Pods_VKClientServer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +70,8 @@
 				4B0CFD41269483C9009CF027 /* Network */,
 				4B0CFD2526948197009CF027 /* VKClientServer */,
 				4B0CFD2426948197009CF027 /* Products */,
+				BAA00B26A3C9A51194FE9F12 /* Pods */,
+				B2C9DAD4855968C64FF3D658 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +96,8 @@
 		4B0CFD3B26948206009CF027 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4B0CFD5E269D54C0009CF027 /* models */,
+				4B0CFD5C269D4DF9009CF027 /* Services */,
 				4B0CFD5026981CB1009CF027 /* Group */,
 				4B0CFD4B26981C83009CF027 /* Friends */,
 				4B0CFD2A26948197009CF027 /* ViewController.swift */,
@@ -87,7 +106,6 @@
 				4B0CFD312694819C009CF027 /* LaunchScreen.storyboard */,
 				4B0CFD342694819C009CF027 /* Info.plist */,
 				4B0CFD442697FE50009CF027 /* VKAuthViewController.swift */,
-				4B0CFD4826981192009CF027 /* APIService.swift */,
 				4B0CFD56269822C9009CF027 /* Logger.swift */,
 			);
 			path = Resources;
@@ -105,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				4B0CFD4C26981CA1009CF027 /* FriendsViewController.swift */,
+				4B0CFD59269C1D1E009CF027 /* FriendsViewCell.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -113,8 +132,44 @@
 			isa = PBXGroup;
 			children = (
 				4B0CFD5126981CD6009CF027 /* GroupsViewController.swift */,
+				4B0CFD69269E9F43009CF027 /* GroupsViewCell.swift */,
 			);
 			path = Group;
+			sourceTree = "<group>";
+		};
+		4B0CFD5C269D4DF9009CF027 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4B0CFD4826981192009CF027 /* APIService.swift */,
+				4B0CFD62269D624D009CF027 /* URLconverter.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4B0CFD5E269D54C0009CF027 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				4B0CFD5F269D550C009CF027 /* Friends.swift */,
+				4B0CFD6C269EA865009CF027 /* Groups.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		B2C9DAD4855968C64FF3D658 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8E2A8528F3116A47EF5200B8 /* Pods_VKClientServer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BAA00B26A3C9A51194FE9F12 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				45F1DD9EFABF6113FBD8DA33 /* Pods-VKClientServer.debug.xcconfig */,
+				710CB09145AAC765BE2AC523 /* Pods-VKClientServer.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,9 +179,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B0CFD372694819C009CF027 /* Build configuration list for PBXNativeTarget "VKClientServer" */;
 			buildPhases = (
+				4D187F44296F7E365BF96393 /* [CP] Check Pods Manifest.lock */,
 				4B0CFD1F26948197009CF027 /* Sources */,
 				4B0CFD2026948197009CF027 /* Frameworks */,
 				4B0CFD2126948197009CF027 /* Resources */,
+				FCC4835B4AD100FCA3F3A085 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -182,20 +239,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4D187F44296F7E365BF96393 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VKClientServer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FCC4835B4AD100FCA3F3A085 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VKClientServer/Pods-VKClientServer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VKClientServer/Pods-VKClientServer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VKClientServer/Pods-VKClientServer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4B0CFD1F26948197009CF027 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				4B0CFD3F2694831F009CF027 /* Session.swift in Sources */,
+				4B0CFD6A269E9F44009CF027 /* GroupsViewCell.swift in Sources */,
 				4B0CFD4926981193009CF027 /* APIService.swift in Sources */,
 				4B0CFD452697FE50009CF027 /* VKAuthViewController.swift in Sources */,
+				4B0CFD60269D550D009CF027 /* Friends.swift in Sources */,
 				4B0CFD2B26948197009CF027 /* ViewController.swift in Sources */,
+				4B0CFD5A269C1D20009CF027 /* FriendsViewCell.swift in Sources */,
 				4B0CFD57269822CA009CF027 /* Logger.swift in Sources */,
 				4B0CFD5226981CD6009CF027 /* GroupsViewController.swift in Sources */,
+				4B0CFD63269D624E009CF027 /* URLconverter.swift in Sources */,
 				4B0CFD4D26981CA1009CF027 /* FriendsViewController.swift in Sources */,
 				4B0CFD2726948197009CF027 /* AppDelegate.swift in Sources */,
 				4B0CFD2926948197009CF027 /* SceneDelegate.swift in Sources */,
+				4B0CFD6D269EA865009CF027 /* Groups.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +443,7 @@
 		};
 		4B0CFD382694819C009CF027 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45F1DD9EFABF6113FBD8DA33 /* Pods-VKClientServer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -358,6 +463,7 @@
 		};
 		4B0CFD392694819C009CF027 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 710CB09145AAC765BE2AC523 /* Pods-VKClientServer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
