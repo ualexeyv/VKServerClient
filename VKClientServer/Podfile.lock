@@ -1,16 +1,20 @@
 PODS:
   - Alamofire (5.4.3)
+  - DynamicJSON (2.0.2)
 
 DEPENDENCIES:
   - Alamofire
+  - DynamicJSON
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - DynamicJSON
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  DynamicJSON: fc0c5a82980ff8aa956156f04d84fcdb2822e875
 
-PODFILE CHECKSUM: c5e0e580aeca2a07b764017b907cea67f705e5dc
+PODFILE CHECKSUM: ecbd239a1c89ab8f449cf29d8cf80d06658fe60c
 
 COCOAPODS: 1.10.1

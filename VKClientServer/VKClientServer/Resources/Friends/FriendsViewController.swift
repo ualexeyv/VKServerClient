@@ -49,6 +49,14 @@ extension FriendsViewController: UITableViewDataSource, UITableViewDelegate {
         cell.avaraImage.image = converterURLtoImage (url: url!)
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard (name: "Main", bundle: nil)
+        let VC = storyboard.instantiateViewController(identifier: "PhotoVC") as! PhotoViewController
+        
+        VC.userId = friends[indexPath.row].id
+      
+        show(VC, sender: nil)
+    }
     
     
 }

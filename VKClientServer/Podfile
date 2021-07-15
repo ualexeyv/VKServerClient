@@ -7,4 +7,5 @@ target 'VKClientServer' do
 
   # Pods for VKClientServer
 pod 'Alamofire'
+pod 'DynamicJSON'
 end

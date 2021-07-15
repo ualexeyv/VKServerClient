@@ -10,6 +10,7 @@ import UIKit
 class GroupsViewController: UIViewController {
     let apiService = APIService()
     var group: [Groups] = []
+    var photos: [Item] = []
     @IBOutlet weak var GroupTableView: UITableView! {
         didSet {
             GroupTableView.dataSource = self
@@ -28,16 +29,12 @@ class GroupsViewController: UIViewController {
                 self.GroupTableView.reloadData()
             }
         }
-        
-        //photos of a random user
-        apiService.APIPhotosRequest(extraPath: "photos.getAll", userId: "7877", searchGroup: "") { json in
-            print(json)
-        }
+
         
         //group search with "swift" word
-        apiService.APIGroupsRequest() { json in
-            print(json)
-        }
+     //   apiService.APIGroupsRequest() { json in
+      //      print(json)
+     //   }
     }
 
 }
@@ -47,6 +44,7 @@ extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "groupCell") as! GroupsViewCell
         let userGroup = group[indexPath.row]
         let groupName = userGroup.groupName
@@ -56,6 +54,8 @@ extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.groupAvatarImage.image = avatarImage
         return cell
     }
+    
+    
     
     
 }

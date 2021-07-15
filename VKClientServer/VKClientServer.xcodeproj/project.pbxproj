@@ -24,6 +24,9 @@
 		4B0CFD63269D624E009CF027 /* URLconverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFD62269D624D009CF027 /* URLconverter.swift */; };
 		4B0CFD6A269E9F44009CF027 /* GroupsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFD69269E9F43009CF027 /* GroupsViewCell.swift */; };
 		4B0CFD6D269EA865009CF027 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFD6C269EA865009CF027 /* Groups.swift */; };
+		4B3FCD9B26A0037D007F475D /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3FCD9A26A0037D007F475D /* Photos.swift */; };
+		4B3FCD9F26A01AC3007F475D /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3FCD9E26A01AC3007F475D /* PhotoViewController.swift */; };
+		4B3FCDA326A01B06007F475D /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3FCDA226A01B06007F475D /* PhotoCollectionViewCell.swift */; };
 		C744AFC3AD5085B6C61487DC /* Pods_VKClientServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E2A8528F3116A47EF5200B8 /* Pods_VKClientServer.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +51,9 @@
 		4B0CFD62269D624D009CF027 /* URLconverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLconverter.swift; sourceTree = "<group>"; };
 		4B0CFD69269E9F43009CF027 /* GroupsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewCell.swift; sourceTree = "<group>"; };
 		4B0CFD6C269EA865009CF027 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
+		4B3FCD9A26A0037D007F475D /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
+		4B3FCD9E26A01AC3007F475D /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		4B3FCDA226A01B06007F475D /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		710CB09145AAC765BE2AC523 /* Pods-VKClientServer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKClientServer.release.xcconfig"; path = "Target Support Files/Pods-VKClientServer/Pods-VKClientServer.release.xcconfig"; sourceTree = "<group>"; };
 		8E2A8528F3116A47EF5200B8 /* Pods_VKClientServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKClientServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -96,6 +102,7 @@
 		4B0CFD3B26948206009CF027 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4B3FCD9D26A01A9E007F475D /* Photos */,
 				4B0CFD5E269D54C0009CF027 /* models */,
 				4B0CFD5C269D4DF9009CF027 /* Services */,
 				4B0CFD5026981CB1009CF027 /* Group */,
@@ -151,8 +158,18 @@
 			children = (
 				4B0CFD5F269D550C009CF027 /* Friends.swift */,
 				4B0CFD6C269EA865009CF027 /* Groups.swift */,
+				4B3FCD9A26A0037D007F475D /* Photos.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		4B3FCD9D26A01A9E007F475D /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				4B3FCD9E26A01AC3007F475D /* PhotoViewController.swift */,
+				4B3FCDA226A01B06007F475D /* PhotoCollectionViewCell.swift */,
+			);
+			path = Photos;
 			sourceTree = "<group>";
 		};
 		B2C9DAD4855968C64FF3D658 /* Frameworks */ = {
@@ -289,6 +306,8 @@
 				4B0CFD3F2694831F009CF027 /* Session.swift in Sources */,
 				4B0CFD6A269E9F44009CF027 /* GroupsViewCell.swift in Sources */,
 				4B0CFD4926981193009CF027 /* APIService.swift in Sources */,
+				4B3FCD9B26A0037D007F475D /* Photos.swift in Sources */,
+				4B3FCDA326A01B06007F475D /* PhotoCollectionViewCell.swift in Sources */,
 				4B0CFD452697FE50009CF027 /* VKAuthViewController.swift in Sources */,
 				4B0CFD60269D550D009CF027 /* Friends.swift in Sources */,
 				4B0CFD2B26948197009CF027 /* ViewController.swift in Sources */,
@@ -298,6 +317,7 @@
 				4B0CFD63269D624E009CF027 /* URLconverter.swift in Sources */,
 				4B0CFD4D26981CA1009CF027 /* FriendsViewController.swift in Sources */,
 				4B0CFD2726948197009CF027 /* AppDelegate.swift in Sources */,
+				4B3FCD9F26A01AC3007F475D /* PhotoViewController.swift in Sources */,
 				4B0CFD2926948197009CF027 /* SceneDelegate.swift in Sources */,
 				4B0CFD6D269EA865009CF027 /* Groups.swift in Sources */,
 			);
