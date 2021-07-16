@@ -9,8 +9,8 @@ import UIKit
 
 class GroupsViewController: UIViewController {
     let apiService = APIService()
-    var group: [Groups] = []
-    var photos: [Item] = []
+    var group: [GroupsModel] = []
+//    var photos: [PhotosModel] = []
     @IBOutlet weak var GroupTableView: UITableView! {
         didSet {
             GroupTableView.dataSource = self

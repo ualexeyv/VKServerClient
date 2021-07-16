@@ -9,7 +9,7 @@ import UIKit
 
 class FriendsViewController: UIViewController {
     let apiService = APIService()
-    var friends: [User] = []
+    var friends: [FriendsModel] = []
     
         
         

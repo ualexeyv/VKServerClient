@@ -6,13 +6,17 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Groups {
-    var id: Int = 0
-    var photo50: String = ""
-    var groupName: String = ""
+class GroupsModel: Object  {
+    @objc dynamic var id: Int = 0
+    @objc dynamic var photo50: String = ""
+    @objc dynamic var groupName: String = ""
     
-    init(json: [String: Any]) {
+    
+    
+    convenience required init(json: [String: Any]) {
+        self.init()
         self.id = json["id"] as! Int
         self.photo50 = json["photo_50"] as! String
         self.groupName = json["name"] as! String

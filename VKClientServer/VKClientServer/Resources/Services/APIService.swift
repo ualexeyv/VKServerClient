@@ -19,7 +19,7 @@ class APIService {
     let friendsExtraPath = "friends.get"
     let photosExtraPath = "photos.getAll"
     
-    func APIFriendsRequest (completion: @escaping ([User]) -> Void ) {
+    func APIFriendsRequest (completion: @escaping ([FriendsModel]) -> Void ) {
         
         let session = URLSession(configuration: .default)
         let path = method + friendsExtraPath
@@ -61,7 +61,7 @@ class APIService {
         
     }
     //manual parsing
-    func APIGroupsRequest (completion: @escaping ([Groups]) -> Void ) {
+    func APIGroupsRequest (completion: @escaping ([GroupsModel]) -> Void ) {
         
         let url = baseUrl+method+groupsExtraPath
         
@@ -81,9 +81,9 @@ class APIService {
                 let object = json as! [String: Any]
                 let response = object["response"] as! [String: Any]
                 let items = response["items"] as! [Any]
-                var groups: [Groups] = []
+                var groups: [GroupsModel] = []
                 for item in items {
-                    let group = Groups(json: item as! [String : Any])
+                    let group = GroupsModel(json: item as! [String : Any])
                     groups.append(group)
                 }
                 completion(groups)
@@ -95,13 +95,13 @@ class APIService {
         
         
     }
-    func APIPhotosRequest (ownerId: Int, completion: @escaping ([Item]) -> Void ) {
+    func APIPhotosRequest (ownerId: Int, completion: @escaping ([PhotosModel]) -> Void ) {
         
         let url = baseUrl+method+photosExtraPath
         
         let groupParameters: Parameters = [
             
-            "count": "5",
+            "count": "10",
             "extended": "1",
             "access_token": apiKey,
             "owner_id": ownerId,
@@ -111,10 +111,18 @@ class APIService {
         
         AF.request(url, method: .get, parameters: groupParameters).responseData { response in
             guard let data = response.data else {return}
-      //      guard let items = JSON().response.items.array else {return}
+            guard let items = JSON(data).response.items.array else {return}
             
-            var photos: [Photos] = []
-            
+      /*      let photos = items.map{
+                Photos2(
+                    id: $0.id.int!,
+                    sizes: $0.sizes.map{
+                        Size2(
+                            height: $0.height.int!,
+                            url: $0.width.int!,
+                            type: $0.type.string!,
+                            width: $0.url.string!)})
+            } */
             do {
                 
                 let photosResponse = try JSONDecoder().decode(Photos.self, from: data)

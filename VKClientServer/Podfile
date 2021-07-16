@@ -8,4 +8,6 @@ target 'VKClientServer' do
   # Pods for VKClientServer
 pod 'Alamofire'
 pod 'DynamicJSON'
+pod 'SwiftKeychainWrapper'
+pod 'RealmSwift'
 end
