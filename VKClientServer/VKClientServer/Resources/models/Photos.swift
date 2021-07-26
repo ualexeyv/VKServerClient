@@ -24,8 +24,9 @@ struct Response: Codable {
 class PhotosModel: Object, Codable {
     @objc dynamic var albumID, date, id, ownerID: Int
     @objc dynamic var hasTags: Bool
-    var sizes: [Size]
+//    var sizes: [Size]
     @objc dynamic var text: String
+    let sizes = List<Size>()
 //    var likes: Likes
 //    var reposts: Reposts
 //    @objc dynamic var realOffset: Int
@@ -37,6 +38,9 @@ class PhotosModel: Object, Codable {
         case hasTags = "has_tags"
         case sizes, text//, likes, reposts
  //       case realOffset = "real_offset"
+    }
+    override static func primaryKey() -> String? {
+            return "id"
     }
 }
 
@@ -61,6 +65,7 @@ class Size: Object, Codable {
     @objc dynamic var url: String = ""
     @objc dynamic var type: String = ""
     @objc dynamic var width: Int = 0
+ 
 }
 
 struct Photos2 {

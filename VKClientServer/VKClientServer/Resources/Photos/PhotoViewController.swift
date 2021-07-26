@@ -12,6 +12,7 @@ class PhotoViewController: UIViewController {
     var photos: [PhotosModel] = []
     var photos2: [Photos2] = []
     var userId: Int = 0
+    let photoDB = PhotoDB()
     
     @IBOutlet weak var photoCollectionView: UICollectionView! {
         didSet {
@@ -24,8 +25,14 @@ class PhotoViewController: UIViewController {
         super.viewDidLoad()
         apiService.APIPhotosRequest(ownerId: userId){ [weak self] photos in
             guard let self = self else {return}
-            self.photos = photos
+            
+            for photo in photos {
+                self.photoDB.add(photo)
+                photo.sizes.first
+            }
             DispatchQueue.main.async {
+                self.photos = self.photoDB.read()
+                
                 self.photoCollectionView.reloadData()
             }
         }
@@ -34,7 +41,9 @@ class PhotoViewController: UIViewController {
 }
 extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        photos.count
+        
+        print(photos.count)
+        return photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

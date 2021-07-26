@@ -9,6 +9,7 @@ import UIKit
 
 class GroupsViewController: UIViewController {
     let apiService = APIService()
+    let groupsDB = GroupsDB()
     var group: [GroupsModel] = []
 //    var photos: [PhotosModel] = []
     @IBOutlet weak var GroupTableView: UITableView! {
@@ -24,8 +25,13 @@ class GroupsViewController: UIViewController {
   
         apiService.APIGroupsRequest() { [weak self] groups in
             guard let self = self else {return}
-            self.group = groups
+            
             DispatchQueue.main.async {
+                for group in groups {
+                    self.groupsDB.add(group)
+                }
+                self.group = self.groupsDB.read()
+                
                 self.GroupTableView.reloadData()
             }
         }

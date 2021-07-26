@@ -69,7 +69,7 @@ extension VKAuthViewController: WKNavigationDelegate {
         KeychainWrapper.standard.set(userId, forKey: "user_id")
         Session.shared.token = ApiToken
         Session.shared.userId = userId
-        
+        print(userId)
         decisionHandler(.cancel)
         showNewsScreen()
     }

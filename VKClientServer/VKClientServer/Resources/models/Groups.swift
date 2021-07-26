@@ -21,4 +21,7 @@ class GroupsModel: Object  {
         self.photo50 = json["photo_50"] as! String
         self.groupName = json["name"] as! String
     }
+    override static func primaryKey() -> String? {
+            return "id"
+    }
 }

@@ -260,17 +260,59 @@
             </objects>
             <point key="canvasLocation" x="-44" y="-185"/>
         </scene>
-        <!--View Controller-->
+        <!--News View Controller-->
         <scene sceneID="HzL-Ke-Ha0">
             <objects>
-                <viewController id="wW1-73-h9s" sceneMemberID="viewController">
+                <viewController id="wW1-73-h9s" customClass="NewsViewController" customModule="VKClientServer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="P3h-08-iOL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DmV-jU-tcp">
+                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="131" id="YKX-9h-2zb" customClass="NewsViewCell" customModule="VKClientServer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="131"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YKX-9h-2zb" id="DEs-bO-jyo">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="131"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2pK-3o-0Qm">
+                                                    <rect key="frame" x="25" y="16" width="364" height="99"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="2pK-3o-0Qm" firstAttribute="top" secondItem="DEs-bO-jyo" secondAttribute="topMargin" constant="5" id="Mqj-9g-smC"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="2pK-3o-0Qm" secondAttribute="trailing" constant="5" id="PMp-mC-jFR"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="2pK-3o-0Qm" secondAttribute="bottom" constant="5" id="UFL-us-JmB"/>
+                                                <constraint firstItem="2pK-3o-0Qm" firstAttribute="leading" secondItem="DEs-bO-jyo" secondAttribute="leadingMargin" constant="5" id="Y8O-8D-Vhf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="NewsTextLabel" destination="2pK-3o-0Qm" id="UYP-Ix-ESQ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Zoe-Yw-f7A"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DmV-jU-tcp" firstAttribute="top" secondItem="Zoe-Yw-f7A" secondAttribute="top" id="HFu-8b-kob"/>
+                            <constraint firstItem="Zoe-Yw-f7A" firstAttribute="bottom" secondItem="DmV-jU-tcp" secondAttribute="bottom" id="Tz7-oA-5nd"/>
+                            <constraint firstItem="Zoe-Yw-f7A" firstAttribute="trailing" secondItem="DmV-jU-tcp" secondAttribute="trailing" id="gFW-so-I0y"/>
+                            <constraint firstItem="DmV-jU-tcp" firstAttribute="leading" secondItem="Zoe-Yw-f7A" secondAttribute="leading" id="usy-ym-xtj"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JT2-LS-R9M"/>
+                    <connections>
+                        <outlet property="newsTableView" destination="DmV-jU-tcp" id="GQY-UO-OMI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uRA-bs-Kai" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
