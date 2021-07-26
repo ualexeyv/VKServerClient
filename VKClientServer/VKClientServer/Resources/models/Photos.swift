@@ -8,6 +8,7 @@
 import Foundation
 import DynamicJSON
 import RealmSwift
+/*
 // MARK: - Welcome
 struct Photos: Codable {
     let response: Response
@@ -17,16 +18,16 @@ struct Photos: Codable {
 struct Response: Codable {
     let count: Int
     let items: [PhotosModel]
-    let more: Int
+   
 }
 
 // MARK: - Item
 class PhotosModel: Object, Codable {
     @objc dynamic var albumID, date, id, ownerID: Int
     @objc dynamic var hasTags: Bool
-//    var sizes: [Size]
+    var sizes: [Size]
     @objc dynamic var text: String
-    let sizes = List<Size>()
+//    let sizes = List<Size>()
 //    var likes: Likes
 //    var reposts: Reposts
 //    @objc dynamic var realOffset: Int
@@ -66,15 +67,31 @@ class Size: Object, Codable {
     @objc dynamic var type: String = ""
     @objc dynamic var width: Int = 0
  
-}
+} */
 
-struct Photos2 {
-    let id: Int
-    let sizes: [Size2]
+class Photos2: Object {
+    @objc dynamic var id: Int = 0
+    var sizes: [Sizes] = []
+    convenience required init(json: JSON) {
+        self.init()
+        self.id = json.id.int ?? 0
+        
+    }
+    override static func primaryKey() -> String? {
+            return "id"
+    }
+    
 }
-struct Size2 {
-    let height: Int
-    let url: String
-    let type: String
-    let width: Int
+class Sizes: Object {
+    @objc dynamic var height: Int = 0
+    @objc dynamic var url: String = ""
+    @objc dynamic var type: String = ""
+    @objc dynamic var width: Int = 0
+    convenience required init(json: JSON) {
+        self.init()
+        self.height = json.id.int ?? 0
+        self.url = json.url.string ?? ""
+        self.type = json.type.string ?? ""
+        self.width = json.width.int ?? 0
+    }
 }

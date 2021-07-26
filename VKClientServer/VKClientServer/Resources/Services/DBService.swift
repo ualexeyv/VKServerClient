@@ -16,7 +16,7 @@ protocol VKDatabaseProtocol {
 }
 
 class FriendsDB: VKDatabaseProtocol {
-    let config = Realm.Configuration(schemaVersion: 2)
+    let config = Realm.Configuration(schemaVersion: 3)
     lazy var mainRealm = try! Realm(configuration: config)
     
     func add(_ user: FriendsModel) {
@@ -63,19 +63,19 @@ class PhotoDB: VKDatabaseProtocol {
     let config = Realm.Configuration(schemaVersion: 0)
     lazy var mainRealm = try! Realm(configuration: config)
     
-    func add(_ user: PhotosModel) {
+    func add(_ user: Photos2) {
         mainRealm.beginWrite()
         mainRealm.add(user, update: .modified)
         try! mainRealm.commitWrite()
     }
     
-    func read() -> [PhotosModel] {
-        let user = mainRealm.objects(PhotosModel.self)
+    func read() -> [Photos2] {
+        let user = mainRealm.objects(Photos2.self)
         print(mainRealm.configuration.fileURL)
         return Array(user)
     }
     
-    func delete(_ user: PhotosModel) {
+    func delete(_ user: Photos2) {
         mainRealm.beginWrite()
         mainRealm.delete(user)
         try! mainRealm.commitWrite()

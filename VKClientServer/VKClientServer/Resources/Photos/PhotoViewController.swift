@@ -9,7 +9,7 @@ import UIKit
 
 class PhotoViewController: UIViewController {
     let apiService = APIService()
-    var photos: [PhotosModel] = []
+    var photos: [Photos2] = []
     var photos2: [Photos2] = []
     var userId: Int = 0
     let photoDB = PhotoDB()
@@ -26,12 +26,13 @@ class PhotoViewController: UIViewController {
         apiService.APIPhotosRequest(ownerId: userId){ [weak self] photos in
             guard let self = self else {return}
             
-            for photo in photos {
-                self.photoDB.add(photo)
-                photo.sizes.first
-            }
+            self.photos = photos
+        //    for photo in photos {
+        //        self.photoDB.add(photo)
+               
+       //     }
             DispatchQueue.main.async {
-                self.photos = self.photoDB.read()
+       //         self.photos = self.photoDB.read()
                 
                 self.photoCollectionView.reloadData()
             }
@@ -48,7 +49,8 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = photoCollectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCollectionViewCell
-        let photo = photos[indexPath.item].sizes[0].url
+        print(photos[indexPath.item])
+        let photo = (photos[indexPath.item].sizes.first?.url)!
         let url = URL (string: photo)
         let image = converterURLtoImage(url: url!)
         cell.photoImage.image = image
