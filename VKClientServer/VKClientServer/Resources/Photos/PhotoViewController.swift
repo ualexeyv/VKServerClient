@@ -10,7 +10,6 @@ import UIKit
 class PhotoViewController: UIViewController {
     let apiService = APIService()
     var photos: [Photos2] = []
-    var photos2: [Photos2] = []
     var userId: Int = 0
     let photoDB = PhotoDB()
     
@@ -25,32 +24,35 @@ class PhotoViewController: UIViewController {
         super.viewDidLoad()
         apiService.APIPhotosRequest(ownerId: userId){ [weak self] photos in
             guard let self = self else {return}
-            
-            self.photos = photos
-        //    for photo in photos {
-        //        self.photoDB.add(photo)
+            self.photos = []
+           
+            for photo in photos {
+                self.photoDB.add(photo)
                
-       //     }
+            }
             DispatchQueue.main.async {
-       //         self.photos = self.photoDB.read()
+                self.photoDB.read().forEach { photo in
+                    if photo.ownerId == self.userId {
+                        self.photos.append(photo)
+                    }
+                }
                 
                 self.photoCollectionView.reloadData()
             }
         }
     }
-  
+    
 }
 extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        print(photos.count)
         return photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = photoCollectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCollectionViewCell
-        print(photos[indexPath.item])
-        let photo = (photos[indexPath.item].sizes.first?.url)!
+        print(photos[indexPath.row].sizes)
+        let photo = photos[indexPath.item].sizes
         let url = URL (string: photo)
         let image = converterURLtoImage(url: url!)
         cell.photoImage.image = image

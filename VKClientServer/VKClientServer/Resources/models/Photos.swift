@@ -71,18 +71,20 @@ class Size: Object, Codable {
 
 class Photos2: Object {
     @objc dynamic var id: Int = 0
-    var sizes: [Sizes] = []
+    @objc dynamic var sizes: String = ""
+    @objc dynamic var ownerId: Int = 0
     convenience required init(json: JSON) {
         self.init()
         self.id = json.id.int ?? 0
-        
+        self.sizes = json.sizes[0].url.string ?? ""
+        self.ownerId = json.owner_id.int ?? 0
     }
     override static func primaryKey() -> String? {
             return "id"
     }
     
 }
-class Sizes: Object {
+/*class Sizes: Object {
     @objc dynamic var height: Int = 0
     @objc dynamic var url: String = ""
     @objc dynamic var type: String = ""
@@ -94,4 +96,4 @@ class Sizes: Object {
         self.type = json.type.string ?? ""
         self.width = json.width.int ?? 0
     }
-}
+}*/

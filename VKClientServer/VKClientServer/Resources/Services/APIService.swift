@@ -115,18 +115,8 @@ class APIService {
             guard let data = response.data else {return}
             guard let items = JSON(data).response.items.array else {return}
             let photos = items.map { Photos2(json: $0) }
-            print(photos)
             completion(photos)
-      /*      let photos = items.map{
-                Photos2(
-                    id: $0.id.int!,
-                    sizes: $0.sizes.map{
-                        Size2(
-                            height: $0.height.int!,
-                            url: $0.width.int!,
-                            type: $0.type.string!,
-                            width: $0.url.string!)})
-            } */
+      
 /*            do {
                 
                 let photosResponse = try JSONDecoder().decode(Photos.self, from: data)
