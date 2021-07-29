@@ -32,7 +32,7 @@ class APIService {
         urlConstractor.queryItems = [
             URLQueryItem(name: "fields", value: "photo_50"),
             URLQueryItem(name: "access_token", value: apiKey),
-            URLQueryItem(name: "count", value: "10"),
+            URLQueryItem(name: "count", value: "15"),
             URLQueryItem(name: "extended", value: "1"),
             URLQueryItem(name: "v", value: "5.130"),
         ]

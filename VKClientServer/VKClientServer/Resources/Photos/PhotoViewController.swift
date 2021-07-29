@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class PhotoViewController: UIViewController {
     let apiService = APIService()
     var photos: [Photos2] = []
     var userId: Int = 0
     let photoDB = PhotoDB()
+    var token: NotificationToken?
     
     @IBOutlet weak var photoCollectionView: UICollectionView! {
         didSet {
@@ -31,13 +33,10 @@ class PhotoViewController: UIViewController {
                
             }
             DispatchQueue.main.async {
-                self.photoDB.read().forEach { photo in
-                    if photo.ownerId == self.userId {
-                        self.photos.append(photo)
-                    }
-                }
-                
-                self.photoCollectionView.reloadData()
+                self.photos = []
+                self.pairPhotoAndRealm()
+         //       self.photos = self.photoDB.read().filter {$0.ownerId == self.userId}
+       
             }
         }
     }
@@ -45,19 +44,39 @@ class PhotoViewController: UIViewController {
 }
 extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return photos.count
+        let photoSet = photoDB.read().filter {$0.ownerId == self.userId}
+        return photoSet.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = photoCollectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCollectionViewCell
-        print(photos[indexPath.row].sizes)
-        let photo = photos[indexPath.item].sizes
+        let photoSet = photoDB.read().filter {$0.ownerId == self.userId}
+        let photo = photoSet[indexPath.item].sizes
         let url = URL (string: photo)
         let image = converterURLtoImage(url: url!)
         cell.photoImage.image = image
         return cell
     }
-    
+    func pairPhotoAndRealm () {
+        guard let realm = try? Realm() else {return}
+        let photo = realm.objects(Photos2.self)
+        token = photo.observe { [weak self] (changes: RealmCollectionChange) in
+            guard let collectionView = self?.photoCollectionView else { return }
+            switch changes {
+            case .initial:
+                collectionView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                collectionView.performBatchUpdates({
+                collectionView.insertItems(at: insertions.map({ IndexPath(row: $0, section: 0) }))
+                collectionView.deleteItems(at: deletions.map({ IndexPath(row: $0, section: 0)}))
+                collectionView.reloadItems(at: modifications.map({ IndexPath(row: $0, section: 0) }))
+            }, completion: nil)
+
+            case .error(let error):
+                fatalError("\(error)")
+
+            }
+        }
+    }
     
 }

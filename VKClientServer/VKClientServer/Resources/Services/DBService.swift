@@ -16,7 +16,7 @@ protocol VKDatabaseProtocol {
 }
 
 class FriendsDB: VKDatabaseProtocol {
-    let config = Realm.Configuration(schemaVersion: 5)
+    let config = Realm.Configuration(schemaVersion: 9)
     lazy var mainRealm = try! Realm(configuration: config)
     
     func add(_ user: FriendsModel) {
@@ -36,9 +36,10 @@ class FriendsDB: VKDatabaseProtocol {
         mainRealm.delete(user)
         try! mainRealm.commitWrite()
     }
+    
 }
 class GroupsDB: VKDatabaseProtocol {
-    let config = Realm.Configuration(schemaVersion: 2)
+    let config = Realm.Configuration(schemaVersion: 8)
     lazy var mainRealm = try! Realm(configuration: config)
     
     func add(_ user: GroupsModel) {
