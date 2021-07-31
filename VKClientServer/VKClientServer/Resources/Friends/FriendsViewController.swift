@@ -10,7 +10,7 @@ import UIKit
 class FriendsViewController: UIViewController {
     let apiService = APIService()
     var friends: [FriendsModel] = []
-    
+    let friendsDB = FriendsDB()
         
         
     
@@ -26,9 +26,14 @@ class FriendsViewController: UIViewController {
    
         apiService.APIFriendsRequest() { [weak self] users in
             guard let self = self else {return}
-            self.friends = users
+        //    self.friends = users
             print(users)
             DispatchQueue.main.async {
+                for user in users {
+                    self.friendsDB.add(user)
+                }
+                self.friends = self.friendsDB.read()
+                
                 self.friendsTableView.reloadData()
             }
         }
