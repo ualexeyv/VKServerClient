@@ -11,6 +11,6 @@ class Session {
     static let shared = Session()
     private init() {}
     var token: String = ""
-    var userId: Int = 7831620
+    var userId: String = ""
 }
 

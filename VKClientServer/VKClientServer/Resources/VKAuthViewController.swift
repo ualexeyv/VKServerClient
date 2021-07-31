@@ -7,6 +7,7 @@
 
 import UIKit
 import WebKit
+import SwiftKeychainWrapper
 
 class VKAuthViewController: UIViewController {
 
@@ -18,6 +19,12 @@ class VKAuthViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let ApiToken = KeychainWrapper.standard.string(forKey: "access_token"),
+           let userId = KeychainWrapper.standard.string(forKey: "user_id") {
+            Session.shared.token = ApiToken
+            Session.shared.userId = userId
+            showNewsScreen()
+        }
         confAuth()
         // Do any additional setup after loading the view.
     }
@@ -56,11 +63,17 @@ extension VKAuthViewController: WKNavigationDelegate {
                 dict[key] = value
                 return dict
             }
-        guard let ApiToken = params["access_token"] else {return}
+        guard let ApiToken = params["access_token"], let userId = params["user_id"] else {return}
+       
+        KeychainWrapper.standard.set(ApiToken, forKey: "access_token")
+        KeychainWrapper.standard.set(userId, forKey: "user_id")
         Session.shared.token = ApiToken
-        print("your ip token is \(ApiToken)")
+        Session.shared.userId = userId
         
         decisionHandler(.cancel)
+        showNewsScreen()
+    }
+    func showNewsScreen() {
         performSegue(withIdentifier: "successScreen", sender: self)
     }
 }

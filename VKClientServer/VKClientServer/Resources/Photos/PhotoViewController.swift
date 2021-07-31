@@ -9,7 +9,8 @@ import UIKit
 
 class PhotoViewController: UIViewController {
     let apiService = APIService()
-    var photos: [Item] = []
+    var photos: [PhotosModel] = []
+    var photos2: [Photos2] = []
     var userId: Int = 0
     
     @IBOutlet weak var photoCollectionView: UICollectionView! {
