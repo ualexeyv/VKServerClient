@@ -7,12 +7,17 @@
 
 import UIKit
 import RealmSwift
+import Firebase
 
 class GroupsViewController: UIViewController {
     let apiService = APIService()
     let groupsDB = GroupsDB()
     var group: [GroupsModel] = []
     var token: NotificationToken?
+    
+    let ref = Database.database().reference(withPath: "groups")
+    var groupsFB = [GroupsFB]()
+    
 //    var photos: [PhotosModel] = []
     @IBOutlet weak var GroupTableView: UITableView! {
         didSet {
@@ -31,8 +36,25 @@ class GroupsViewController: UIViewController {
             DispatchQueue.main.async {
                 for group in groups {
                     self.groupsDB.add(group)
+                    let groupFB = GroupsFB(groupName: group.groupName, photo50: group.photo50, id: group.id)
+                    let groupRef = self.ref.child(String(group.id))
+                    groupRef.setValue(groupFB.toAnyObject())
                 }
-                self.pairGroupsTableAndRealm()
+             //   self.pairGroupsTableAndRealm()
+                self.ref.observe(.value, with: { snapshot in
+                        var groups: [GroupsFB] = []
+                        
+                        for child in snapshot.children {
+                            if let snapshot = child as? DataSnapshot,
+                               let group = GroupsFB(snapshot: snapshot) {
+                                   groups.append(group)
+                            }
+                        }
+                        
+                        self.groupsFB = groups
+                        self.GroupTableView.reloadData()
+                })
+
             }
         }
 
@@ -46,13 +68,14 @@ class GroupsViewController: UIViewController {
 }
 extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groupsDB.read().count
+        return groupsFB.count
+    //    return groupsDB.read().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "groupCell") as! GroupsViewCell
-        let userGroup = groupsDB.read()[indexPath.row]
+        let userGroup = groupsFB[indexPath.row]
         let groupName = userGroup.groupName
         let url = URL(string: userGroup.photo50) ?? URL(string: "")
         let avatarImage = converterURLtoImage(url: url!)

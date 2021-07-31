@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class NewsViewController: UIViewController {
     var userNews: [NewsItem] = []
@@ -18,7 +19,7 @@ class NewsViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         apiNews.APINewsRequest() { news in
             print(news)
             self.userNews = news

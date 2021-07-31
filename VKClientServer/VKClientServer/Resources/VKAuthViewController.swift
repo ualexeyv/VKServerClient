@@ -8,9 +8,10 @@
 import UIKit
 import WebKit
 import SwiftKeychainWrapper
+import Firebase
 
 class VKAuthViewController: UIViewController {
-
+    let ref = Database.database().reference(withPath: "authUsers")
     
     @IBOutlet weak var webView: WKWebView! {
         didSet {

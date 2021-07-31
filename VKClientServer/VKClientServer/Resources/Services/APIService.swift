@@ -20,7 +20,23 @@ class APIService {
     let friendsExtraPath = "friends.get"
     let photosExtraPath = "photos.getAll"
     let newsExtraPath = "wall.get"
+    let usersExtraPath = "users.get"
     
+    func APIUsersRequest (completion: @escaping ([UserModel]) -> Void) {
+        let url = baseUrl+method+usersExtraPath
+        let userParameters: Parameters =
+            [ "fields": ["photo_50", "verified"],
+              "name_case": "Nom",
+              "user_ids": userId,
+              "access_token": apiKey,
+              "v": "5.130"]
+        AF.request(url, method: HTTPMethod.get, parameters: userParameters).responseData { response in
+            guard let data = response.data else {return}
+            guard let items = JSON(data).response.array else {return}
+            let userArray = items.map {UserModel(json: $0)}
+            completion (userArray)
+        }
+    }
     func APIFriendsRequest (completion: @escaping ([FriendsModel]) -> Void ) {
         
         let session = URLSession(configuration: .default)
