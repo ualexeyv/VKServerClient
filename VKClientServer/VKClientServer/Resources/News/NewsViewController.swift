@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 
 class NewsViewController: UIViewController {
-    var userNews: [NewsItem] = []
+    var userNews: [News2] = []
     let apiNews = APIService()
     @IBOutlet weak var newsTableView: UITableView! {
         didSet {
@@ -22,8 +22,9 @@ class NewsViewController: UIViewController {
         
         apiNews.APINewsRequest() { news in
             print(news)
-            self.userNews = news
+            
             DispatchQueue.main.async {
+                self.userNews = news
                 self.newsTableView.reloadData()
             }
         }
@@ -41,6 +42,18 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         let new = userNews[indexPath.row]
         let text = new.text
         cell.NewsTextLabel.text = text
+        let newsImageString = userNews[indexPath.row].newsImage
+        guard let url = URL (string: newsImageString) else {
+            let docImageString = userNews[indexPath.row].docImage
+            guard let url = URL (string: docImageString) else {return cell}
+            let image = converterURLtoImage(url: url)
+            cell.newsImage.image = image
+            return cell
+            
+        }
+        let image = converterURLtoImage(url: url)
+        cell.newsImage.image = image
+        
         return cell
     }
     

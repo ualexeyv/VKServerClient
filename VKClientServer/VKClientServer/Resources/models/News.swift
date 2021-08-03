@@ -4,6 +4,7 @@
 //   let newsRequst = try? newJSONDecoder().decode(NewsRequst.self, from: jsonData)
 
 import Foundation
+import DynamicJSON
 
 // MARK: - NewsRequst
 struct NewsRequst: Codable {
@@ -89,3 +90,13 @@ struct Reposts: Codable {
     }
 }
 
+class News2 {
+    var text: String = ""
+    var newsImage: String = ""
+    var docImage: String = ""
+    init (json: JSON) {
+        self.text = json.text.string ?? ""
+        self.newsImage = json.attachments[0].photo.sizes[0].url.string ?? ""
+        self.docImage = json.attachments[0].doc.url.string ?? ""
+    }
+}
