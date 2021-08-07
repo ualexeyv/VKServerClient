@@ -281,7 +281,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2pK-3o-0Qm">
-                                                    <rect key="frame" x="25" y="224" width="364" height="50"/>
+                                                    <rect key="frame" x="25" y="81" width="364" height="193"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="xp8-g6-dIg"/>
                                                     </constraints>
@@ -289,24 +289,16 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rMG-dz-isc">
-                                                    <rect key="frame" x="5" y="5" width="404" height="214"/>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="rMG-dz-isc" firstAttribute="leading" secondItem="DEs-bO-jyo" secondAttribute="leading" constant="5" id="1jc-op-shi"/>
-                                                <constraint firstItem="2pK-3o-0Qm" firstAttribute="top" secondItem="rMG-dz-isc" secondAttribute="bottom" constant="5" id="7nW-Jd-KVt"/>
-                                                <constraint firstItem="rMG-dz-isc" firstAttribute="top" secondItem="DEs-bO-jyo" secondAttribute="top" constant="5" id="8SR-J1-Twv"/>
                                                 <constraint firstItem="2pK-3o-0Qm" firstAttribute="leading" secondItem="DEs-bO-jyo" secondAttribute="leadingMargin" constant="5" id="G32-xU-bAA"/>
-                                                <constraint firstItem="rMG-dz-isc" firstAttribute="centerX" secondItem="DEs-bO-jyo" secondAttribute="centerX" id="Jm6-nF-hlJ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="2pK-3o-0Qm" secondAttribute="trailing" constant="5" id="SNP-8y-ot4"/>
-                                                <constraint firstAttribute="trailing" secondItem="rMG-dz-isc" secondAttribute="trailing" constant="5" id="gbO-j0-eZO"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="2pK-3o-0Qm" secondAttribute="bottom" constant="5" id="ogI-xd-EnQ"/>
+                                                <constraint firstItem="2pK-3o-0Qm" firstAttribute="top" secondItem="DEs-bO-jyo" secondAttribute="topMargin" constant="70" id="yRR-NU-24A"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="NewsTextLabel" destination="2pK-3o-0Qm" id="UYP-Ix-ESQ"/>
-                                            <outlet property="newsImage" destination="rMG-dz-isc" id="Kwq-Cm-YrO"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -36,6 +36,7 @@
 		4B971BB126B557BD0030D98F /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B971BB026B557BD0030D98F /* user.swift */; };
 		4B971BB526B55DA10030D98F /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B971BB426B55DA00030D98F /* UserInfoViewController.swift */; };
 		4B971BB926B562790030D98F /* usersFB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B971BB826B562790030D98F /* usersFB.swift */; };
+		4B971BBC26BD0A050030D98F /* newsCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B971BBB26BD09FC0030D98F /* newsCodable.swift */; };
 		C744AFC3AD5085B6C61487DC /* Pods_VKClientServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E2A8528F3116A47EF5200B8 /* Pods_VKClientServer.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,7 @@
 		4B971BB026B557BD0030D98F /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
 		4B971BB426B55DA00030D98F /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		4B971BB826B562790030D98F /* usersFB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = usersFB.swift; sourceTree = "<group>"; };
+		4B971BBB26BD09FC0030D98F /* newsCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newsCodable.swift; sourceTree = "<group>"; };
 		710CB09145AAC765BE2AC523 /* Pods-VKClientServer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKClientServer.release.xcconfig"; path = "Target Support Files/Pods-VKClientServer/Pods-VKClientServer.release.xcconfig"; sourceTree = "<group>"; };
 		8E2A8528F3116A47EF5200B8 /* Pods_VKClientServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKClientServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -185,6 +187,7 @@
 				4B971BAD26B3DA980030D98F /* GroupFB.swift */,
 				4B971BB026B557BD0030D98F /* user.swift */,
 				4B971BB826B562790030D98F /* usersFB.swift */,
+				4B971BBB26BD09FC0030D98F /* newsCodable.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				4B3FCDE726A7E7AA007F475D /* News.swift in Sources */,
 				4B0CFD4D26981CA1009CF027 /* FriendsViewController.swift in Sources */,
 				4B0CFD2726948197009CF027 /* AppDelegate.swift in Sources */,
+				4B971BBC26BD0A050030D98F /* newsCodable.swift in Sources */,
 				4B3FCD9F26A01AC3007F475D /* PhotoViewController.swift in Sources */,
 				4B72620826AAA60300479590 /* DBService.swift in Sources */,
 				4B72620526A8130300479590 /* NewsViewCell.swift in Sources */,

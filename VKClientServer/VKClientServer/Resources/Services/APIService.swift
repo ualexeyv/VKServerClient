@@ -146,16 +146,17 @@ class APIService {
         }
        
     }
-    func APINewsRequest (completion: @escaping ([News2]) -> Void) {
+    func APINewsRequest (completion: @escaping ([NewsFeedModel]) -> Void) {
         let session = URLSession(configuration: .default)
         let path = method + newsExtraPath
         var urlConstractor = URLComponents()
+        let decoder = JSONDecoder()
         urlConstractor.scheme = "https"
         urlConstractor.host = "api.vk.com"
         urlConstractor.path = path
         urlConstractor.queryItems = [
             URLQueryItem(name: "filters", value: "post"),
-            URLQueryItem(name: "count", value: "5"),
+            URLQueryItem(name: "count", value: "3"),
             URLQueryItem(name: "access_token", value: apiKey),
 //            URLQueryItem(name: "owner_id", value: userId),
             URLQueryItem(name: "v", value: "5.130"),
@@ -168,9 +169,26 @@ class APIService {
         let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
             NetworkLogger.log(response: (response as! HTTPURLResponse), data: data, error: error)
             guard let data = data else {return}
-            guard let items = JSON(data).response.items.array else {return}
-            let news = items.map {News2(json: $0) }
-            completion(news)
+            do {
+                let items = try decoder.decode(NewFeed.self, from: data).response.items
+    /*          let result = try decoder.decode(SafelyDecodedArray<NewsFeedModel>.self, from: data).result
+                
+             //
+               let news: [NewsFeedModel] = result.compactMap {
+                    switch $0 {
+                        case .success(let item):
+                            return item
+                        default:
+                            return nil
+                    }
+                }*/
+                completion(items)
+            } catch (let error) {
+                print(error)
+            }
+  //          guard let items = JSON(data).response.items.array else {return}
+ //           let news = items.map {News2(json: $0) }
+            
           
         })
         task.resume()
