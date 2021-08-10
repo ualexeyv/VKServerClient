@@ -9,7 +9,9 @@ import UIKit
 import FirebaseAuth
 
 class NewsViewController: UIViewController {
-    var userNews: [NewsFeedModel] = []
+    var userNews: [NewsItem] = []
+    var groupsItems: [Group] = []
+    var profileItems: [Profile] = []
     let apiNews = APIService()
     @IBOutlet weak var newsTableView: UITableView! {
         didSet {
@@ -21,10 +23,12 @@ class NewsViewController: UIViewController {
         super.viewDidLoad()
         
         apiNews.APINewsRequest() { news in
-            print(news)
+            print(news.response.items[0])
             
             DispatchQueue.main.async {
-                self.userNews = news
+                self.userNews = news.response.items
+                self.groupsItems = news.response.groups
+                self.profileItems = news.response.profiles
                 self.newsTableView.reloadData()
             }
         }
@@ -40,23 +44,36 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell") as! NewsViewCell
         let new = userNews[indexPath.row]
+        let newId = new.id
+        for groupItem in groupsItems {
+            if newId == -groupItem.id {
+                cell.nameOfGroupOrUserLabel.text = groupItem.name
+                let url = (URL (string: groupItem.photo50)!)
+                let image = converterURLtoImage(url: url)
+                cell.postAvatarImage.image = image
+            }
+        }
+        for profile in profileItems {
+            if newId == profile.id {
+                cell.nameOfGroupOrUserLabel.text = "\(profile.firstName) \(profile.lastName)"
+                let url = (URL (string: profile.photo50)!)
+                let image = converterURLtoImage(url: url)
+                cell.postAvatarImage.image = image
+            }
+        }
         let text = new.text
         cell.NewsTextLabel.text = text
-        var t = 0
-        for userImage in userNews[indexPath.row].url {
-            print(userNews[indexPath.row].url.count)
-            guard let url = URL (string: userImage) else { return cell}
+        guard let photoNews = new.attachments?[0] else {return cell}
+        switch photoNews.type {
+        case "photo":
+            guard let userImage = photoNews.photo?.sizes[0].url,
+                let url = URL (string: userImage) else { return cell}
             let image = converterURLtoImage(url: url)
-            let imageView = UIImageView(image: image)
-            imageView.frame = CGRect(x: t, y: 0, width: 50, height: 50)
-            t += 52
-            tableView.addSubview(imageView)
-            imageView.bringSubviewToFront(tableView)
+            cell.attachmentPhotoImage.image = image
+        default:
+            return cell
         }
-//        guard let newsImageString = userNews[indexPath.row].url.first,
-//              let url = URL (string: newsImageString) else { return cell}
-//        let image = converterURLtoImage(url: url)
-//        cell.newsImage.image = image
+        
         return cell
         
     }

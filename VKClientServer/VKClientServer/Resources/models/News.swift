@@ -7,40 +7,68 @@ import Foundation
 import DynamicJSON
 
 // MARK: - NewsRequst
-struct NewsRequst: Codable {
+struct NewsRequest: Codable {
     let response: NewsResponse
 }
 
 // MARK: - Response
 struct NewsResponse: Codable {
-    let newsItems: [NewsItem]
+    let items: [NewsItem]
+    let groups: [Group]
+    let profiles: [Profile]
 }
 
+struct Group: Codable {
+    let id: Int
+    let name: String
+    let photo50: String
+
+    enum CodingKeys: String, CodingKey {
+        case id, name
+        case photo50 = "photo_50"
+
+    }
+}
+struct Profile: Codable {
+    let firstName: String
+    let id: Int
+    let lastName: String
+    let photo50: String
+
+    enum CodingKeys: String, CodingKey {
+        case firstName = "first_name"
+        case id
+        case lastName = "last_name"
+        case photo50 = "photo_50"
+    }
+}
 // MARK: - Item
 struct NewsItem: Codable {
     let id: Int
     let text: String
-    let copyHistory: [CopyHistory]
-    let comments: Comments
-    let likes: Likes
-    let reposts: Reposts
+    let copyHistory: [CopyHistory]?
+    let attachments: [Attachment]?
+//    let comments: Comments
+ //   let likes: Likes
+//    let reposts: Reposts
 
     enum CodingKeys: String, CodingKey {
-        case id
+        case id = "source_id"
         case text
+        case attachments
         case copyHistory = "copy_history"
-        case comments, likes, reposts
+ //       case comments, likes, reposts
     }
 }
 
 // MARK: - Comments
-struct Comments: Codable {
+/*struct Comments: Codable {
     let count: Int
 
     enum CodingKeys: String, CodingKey {
         case count
     }
-}
+}*/
 
 // MARK: - CopyHistory
 struct CopyHistory: Codable {
@@ -53,7 +81,12 @@ struct CopyHistory: Codable {
 
 // MARK: - Attachment
 struct Attachment: Codable {
-    let photo: NewsPhoto
+    let photo: NewsPhoto?
+    let type: String
+    
+    enum CodingKeys: String, CodingKey {
+        case photo, type
+    }
 }
 
 // MARK: - Photo
@@ -73,22 +106,22 @@ struct NewsSize: Codable {
 }
 
 // MARK: - Likes
-struct Likes: Codable {
+/*struct Likes: Codable {
     let count: Int
 
     enum CodingKeys: String, CodingKey {
         case count
     }
-}
+}*/
 
 // MARK: - Reposts
-struct Reposts: Codable {
+/*struct Reposts: Codable {
     let count: Int
 
     enum CodingKeys: String, CodingKey {
         case count
     }
-}
+}*/
 
 class News2 {
     var text: String = ""

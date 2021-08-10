@@ -9,6 +9,9 @@ import UIKit
 
 class NewsViewCell: UITableViewCell {
 
+    @IBOutlet weak var attachmentPhotoImage: UIImageView!
+    @IBOutlet weak var nameOfGroupOrUserLabel: UILabel!
+    @IBOutlet weak var postAvatarImage: UIImageView!
     @IBOutlet weak var NewsTextLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
