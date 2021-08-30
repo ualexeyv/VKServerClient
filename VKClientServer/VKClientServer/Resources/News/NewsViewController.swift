@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import AVKit
 
 class NewsViewController: UIViewController {
     var userNews: [NewsItem] = []
@@ -21,7 +22,11 @@ class NewsViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let nib = UINib(nibName: "NewsPhotoTableViewCell", bundle: nil)
+        self.newsTableView.register(nib, forCellReuseIdentifier: "NewsPhotoCell")
+        self.newsTableView.register(UINib(nibName: "NewsTextViewCell", bundle: nil), forCellReuseIdentifier: "textCell")
+        self.newsTableView.register(UINib(nibName: "NewsNameViewCell", bundle: nil), forCellReuseIdentifier: "ownerCell")
+        self.newsTableView.register(UINib(nibName: "NewsPhotoViewCell", bundle: nil), forCellReuseIdentifier: "NewsPhotoCell")
         apiNews.APINewsRequest() { news in
             print(news.response.items[0])
             
@@ -37,46 +42,50 @@ class NewsViewController: UIViewController {
 
 }
 extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return userNews.count
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell") as! NewsViewCell
-        let new = userNews[indexPath.row]
-        let newId = new.id
-        for groupItem in groupsItems {
-            if newId == -groupItem.id {
-                cell.nameOfGroupOrUserLabel.text = groupItem.name
-                let url = (URL (string: groupItem.photo50)!)
-                let image = converterURLtoImage(url: url)
-                cell.postAvatarImage.image = image
+        let new = userNews[indexPath.section]
+        switch indexPath.row {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ownerCell") as! NewsNameViewCell
+            let newId = new.id
+            for groupItem in groupsItems {
+                if newId == -groupItem.id {
+                    cell.nameOfGroupOrUserLabel.text = groupItem.name
+                    let url = (URL (string: groupItem.photo50)!)
+                    let image = converterURLtoImage(url: url)
+                    cell.avatarImage.image = image
+                }
             }
-        }
-        for profile in profileItems {
-            if newId == profile.id {
-                cell.nameOfGroupOrUserLabel.text = "\(profile.firstName) \(profile.lastName)"
-                let url = (URL (string: profile.photo50)!)
-                let image = converterURLtoImage(url: url)
-                cell.postAvatarImage.image = image
+            for profile in profileItems {
+                if newId == profile.id {
+                    cell.nameOfGroupOrUserLabel.text = "\(profile.firstName) \(profile.lastName)"
+                    let url = (URL (string: profile.photo50)!)
+                    let image = converterURLtoImage(url: url)
+                    cell.avatarImage.image = image
+                }
             }
-        }
-        let text = new.text
-        cell.NewsTextLabel.text = text
-        guard let photoNews = new.attachments?[0] else {return cell}
-        switch photoNews.type {
-        case "photo":
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "textCell") as! NewsTextViewCell
+            let text = new.text
+            cell.newsTextLabel.text = text
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsPhotoCell") as! NewsPhotoViewCell
+            guard let photoNews = new.attachments?[0] else {return cell}
             guard let userImage = photoNews.photo?.sizes[0].url,
                 let url = URL (string: userImage) else { return cell}
             let image = converterURLtoImage(url: url)
-            cell.attachmentPhotoImage.image = image
-        default:
+            cell.newsPhotoImage.image = image
             return cell
         }
-        
-        return cell
-        
     }
-    
     
 }
