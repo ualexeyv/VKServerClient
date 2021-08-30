@@ -26,32 +26,35 @@ class PhotoViewController: UIViewController {
         super.viewDidLoad()
         apiService.APIPhotosRequest(ownerId: userId){ [weak self] photos in
             guard let self = self else {return}
-            self.photos = []
-           
-            for photo in photos {
-                self.photoDB.add(photo)
-               
-            }
             DispatchQueue.main.async {
-                self.photos = []
-                self.pairPhotoAndRealm()
+                self.photos = photos
+                self.photoCollectionView.reloadData()
+            }
+           
+      /*      for photo in photos {
+                self.photos.append(photo)
+               
+            } */
+       //     DispatchQueue.main.async {
+        //        self.photos = []
+        //        self.pairPhotoAndRealm()
          //       self.photos = self.photoDB.read().filter {$0.ownerId == self.userId}
        
-            }
+       //     }
         }
     }
     
 }
 extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let photoSet = photoDB.read().filter {$0.ownerId == self.userId}
-        return photoSet.count
+        let photoSet = photos.filter {$0.id == self.userId}
+        return photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = photoCollectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCollectionViewCell
-        let photoSet = photoDB.read().filter {$0.ownerId == self.userId}
-        let photo = photoSet[indexPath.item].sizes
+        let photoSet = photos.filter {$0.id == self.userId}
+        let photo = photos[indexPath.item].sizes[0].url
         let url = URL (string: photo)
         let image = converterURLtoImage(url: url!)
         cell.photoImage.image = image

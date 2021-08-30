@@ -28,14 +28,14 @@ class NewsViewController: UIViewController {
         self.newsTableView.register(UINib(nibName: "NewsNameViewCell", bundle: nil), forCellReuseIdentifier: "ownerCell")
         self.newsTableView.register(UINib(nibName: "NewsPhotoViewCell", bundle: nil), forCellReuseIdentifier: "NewsPhotoCell")
         apiNews.APINewsRequest() { news in
-            print(news.response.items[0])
+            
             
             DispatchQueue.main.async {
                 self.userNews = news.response.items
                 self.groupsItems = news.response.groups
                 self.profileItems = news.response.profiles
                 self.newsTableView.reloadData()
-            }
+            } 
         }
         
     }
@@ -51,10 +51,12 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let new = userNews[indexPath.section]
+       
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ownerCell") as! NewsNameViewCell
             let newId = new.id
+            print("!!!!!!!!!!!!!!!!!!!!!\(newId)!!!!!!!!!!!!!!!!!!!")
             for groupItem in groupsItems {
                 if newId == -groupItem.id {
                     cell.nameOfGroupOrUserLabel.text = groupItem.name

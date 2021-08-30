@@ -7,7 +7,8 @@
 
 import Foundation
 import RealmSwift
-import DynamicJSON
+//import DynamicJSON
+import SwiftyJSON
 
 class UserModel: Object {
     @objc dynamic var id: Int = 0
@@ -16,10 +17,10 @@ class UserModel: Object {
     @objc dynamic var lastName: String = ""
     convenience required init(json: JSON) {
         self.init()
-        self.id = json.id.int ?? 0
-        self.photo_50 = json.photo_50.string ?? ""
-        self.firstName = json.first_name.string ?? ""
-        self.lastName = json.last_name.string ?? ""
+        self.id = json["id"].int ?? 0
+        self.photo_50 = json["photo_50"].string ?? ""
+        self.firstName = json["first_name"].string ?? ""
+        self.lastName = json["last_name"].string ?? ""
     }
     override static func primaryKey() -> String? {
             return "id"
