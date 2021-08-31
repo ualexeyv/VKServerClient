@@ -28,9 +28,25 @@ class GroupsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let operationQueue = OperationQueue()
+
+        let fetchGroupData = FetchGroupData()
+        operationQueue.addOperation(fetchGroupData)
+
+        let parseGroupData = ParseGroupData()
+        parseGroupData.addDependency(fetchGroupData)
+        operationQueue.addOperation(parseGroupData)
+        
+        let saveGroupDataToFB = SaveGroupDataToFB()
+        saveGroupDataToFB.addDependency(parseGroupData)
+        operationQueue.addOperation(saveGroupDataToFB)
+
+        let displayGroupData = DisplayGroupData(self)
+        displayGroupData.addDependency(saveGroupDataToFB)
+        OperationQueue.main.addOperation(displayGroupData)
         //groups of current user
   
-        apiService.APIGroupsRequest() { [weak self] groups in
+  /*      apiService.APIGroupsRequest() { [weak self] groups in
             guard let self = self else {return}
             
             DispatchQueue.main.async {
@@ -56,7 +72,7 @@ class GroupsViewController: UIViewController {
                 })
 
             }
-        }
+        } */
 
         
         //group search with "swift" word
@@ -68,6 +84,7 @@ class GroupsViewController: UIViewController {
 }
 extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(groupsFB.count)
         return groupsFB.count
     //    return groupsDB.read().count
     }
