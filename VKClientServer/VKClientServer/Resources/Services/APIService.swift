@@ -7,7 +7,8 @@
 
 import UIKit
 import Alamofire
-import DynamicJSON
+//import DynamicJSON
+import SwiftyJSON
 
 class APIService {
 
@@ -32,8 +33,9 @@ class APIService {
               "v": "5.130"]
         AF.request(url, method: HTTPMethod.get, parameters: userParameters).responseData { response in
             guard let data = response.data else {return}
-            guard let items = JSON(data).response.array else {return}
+            guard let items = JSON(data)["response"].array else {return}
             let userArray = items.map {UserModel(json: $0)}
+          
             completion (userArray)
         }
     }
@@ -129,20 +131,30 @@ class APIService {
         
         AF.request(url, method: .get, parameters: groupParameters).responseData { response in
             guard let data = response.data else {return}
-            guard let items = JSON(data).response.items.array else {return}
-            let photos = items.map { Photos2(json: $0) }
-            completion(photos)
+            let dispatchGroupPhoto = DispatchGroup()
+            let decoder = JSONDecoder()
+            let json = JSON(data)
+            print(json)
+            var photos: [Photos2] = []
+            let photosArray = json["response"]["items"].arrayValue
+            print(photosArray[0])
+            for (index, item) in photosArray.enumerated() {
+                DispatchQueue.global(qos: .userInteractive).async(group: dispatchGroupPhoto) {
+                    do {
+                        let photoItem = try decoder.decode(Photos2.self, from: item.rawData())
+                        photos.append(photoItem)
+                       
+                    } catch (let errorDecode) {
+                        print("error = \(errorDecode.localizedDescription) at index: \(index)")
+                    }
+                }
+            }
+            
+        //    let photos3 = items.map { Photos2(json: $0) }
+            dispatchGroupPhoto.notify(queue: DispatchQueue.main){
+                completion(photos)
       
-/*            do {
-                
-                let photosResponse = try JSONDecoder().decode(Photos.self, from: data)
-                
-                let userPhotos = photosResponse.response.items
-               
-    //            completion(userPhotos)
-            } catch {
-                print (error.localizedDescription)
-            } */
+            }
         }
        
     }
@@ -150,13 +162,13 @@ class APIService {
         let session = URLSession(configuration: .default)
         let path = method + newsExtraPath
         var urlConstractor = URLComponents()
-        let decoder = JSONDecoder()
+        
         urlConstractor.scheme = "https"
         urlConstractor.host = "api.vk.com"
         urlConstractor.path = path
         urlConstractor.queryItems = [
             URLQueryItem(name: "filters", value: "post"),
-            URLQueryItem(name: "count", value: "10"),
+            URLQueryItem(name: "count", value: "5"),
             URLQueryItem(name: "access_token", value: apiKey),
 //            URLQueryItem(name: "owner_id", value: userId),
             URLQueryItem(name: "v", value: "5.130"),
@@ -165,22 +177,58 @@ class APIService {
         guard let url = urlConstractor.url else {return}
         var request = URLRequest(url: url)
         request.httpMethod = "Get"
-        NetworkLogger.log(request: request)
+//        NetworkLogger.log(request: request)
         let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
-            NetworkLogger.log(response: (response as! HTTPURLResponse), data: data, error: error)
+  //          NetworkLogger.log(response: (response as! HTTPURLResponse), data: data, error: error)
             guard let data = data else {return}
-            do {
-                var items: NewsRequest
-                items = try decoder.decode(NewsRequest.self, from: data)
-         //     let result = try decoder.decode(SafelyDecodedArray<NewsFeedModel>.self, from: data).result
-                completion(items)
-            } catch (let error) {
-                print(error.localizedDescription)
-            }
-  //          guard let items = JSON(data).response.items.array else {return}
- //           let news = items.map {News2(json: $0) }
+            let decoder = JSONDecoder()
+            let json = JSON(data)
+            let dispatchGroup = DispatchGroup()
             
-          
+            let VKNewsItemsArray = json["response"]["items"].arrayValue
+            let VKNewsGroupArray = json["response"]["groups"].arrayValue
+            let VKNewsProfilesArray = json["response"]["profiles"].arrayValue
+            var VKNewsItems: [NewsItem] = []
+            var VKNewsProfiles: [Profile] = []
+            var VKNewsGroup: [Group] = []
+            
+            for (index, news) in VKNewsItemsArray.enumerated() {
+                DispatchQueue.global(qos: .userInteractive).async(group: dispatchGroup) {
+                    do {
+                        let VKNewsItem = try decoder.decode(NewsItem.self, from: news.rawData())
+                        VKNewsItems.append(VKNewsItem)
+                    } catch (let errorDecode){
+                        print ("error decode at index \(index) in newsItem: \(news) - error: \(errorDecode)")
+                    }
+                }
+            }
+            for (index, group) in VKNewsGroupArray.enumerated() {
+                DispatchQueue.global(qos: .userInteractive).async(group: dispatchGroup) {
+                    do {
+                        let VKNewsGroupDecode = try decoder.decode(Group.self, from: group.rawData())
+                        VKNewsGroup.append(VKNewsGroupDecode)
+                    } catch (let errorDecode){
+                        print ("error decode at index \(index) in newsGroup: \(group) - error: \(errorDecode)")
+                    }
+                }
+            }
+            for (index, profile) in VKNewsProfilesArray.enumerated() {
+                DispatchQueue.global(qos: .userInteractive).async(group: dispatchGroup) {
+                    do {
+                        let VKNewsProfileDecode = try decoder.decode(Profile.self, from: profile.rawData())
+                        VKNewsProfiles.append(VKNewsProfileDecode)
+                    } catch (let errorDecode){
+                        print ("error decode at index \(index) in newsGroup: \(profile) - error: \(errorDecode)")
+                    }
+                }
+            }
+            dispatchGroup.notify(queue: DispatchQueue.main){
+                let response = NewsResponse (items: VKNewsItems, groups: VKNewsGroup, profiles: VKNewsProfiles)
+                let feed = NewsRequest(response: response)
+                completion(feed)
+            }
+            
+        
         })
         task.resume()
     }
