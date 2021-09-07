@@ -16,9 +16,9 @@ class PhotoViewController: UIViewController {
 //   let photoDB = PhotoDB()
     var token: NotificationToken?
     
-    lazy var cashedData: NSCache <NSString, UIImage> = {
-        let cashe = NSCache<NSString, UIImage>()
-        return cashe
+    lazy var cachedData: NSCache <NSString, UIImage> = {
+        let cache = NSCache<NSString, UIImage>()
+        return cache
     } ()
     
     @IBOutlet weak var photoCollectionView: UICollectionView! {
@@ -62,12 +62,12 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     //    let photoSet = photos.filter {$0.id == self.userId}
         let photo = photos[indexPath.item].sizes[2].url
         guard let url = URL (string: photo) else {return cell}
-        if let image = cashedData.object(forKey: url.absoluteString as NSString) {
+        if let image = cachedData.object(forKey: url.absoluteString as NSString) {
             cell.photoImage.image = image
             
         } else {
             let imageURL = converterURLtoImage(url: url)!
-            cashedData.setObject(imageURL, forKey: url.absoluteString as NSString)
+            cachedData.setObject(imageURL, forKey: url.absoluteString as NSString)
             cell.photoImage.image = imageURL
             collectionView.reloadItems(at: [indexPath])
         }
