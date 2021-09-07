@@ -7,13 +7,19 @@
 
 import UIKit
 import RealmSwift
+import SDWebImage
 
 class PhotoViewController: UIViewController {
     let apiService = APIService()
     var photos: [Photos2] = []
     var userId: Int = 0
-    let photoDB = PhotoDB()
+//   let photoDB = PhotoDB()
     var token: NotificationToken?
+    
+    lazy var cashedData: NSCache <NSString, UIImage> = {
+        let cashe = NSCache<NSString, UIImage>()
+        return cashe
+    } ()
     
     @IBOutlet weak var photoCollectionView: UICollectionView! {
         didSet {
@@ -47,20 +53,28 @@ class PhotoViewController: UIViewController {
 }
 extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let photoSet = photos.filter {$0.id == self.userId}
+  //      let photoSet = photos.filter {$0.id == self.userId}
         return photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = photoCollectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCollectionViewCell
-        let photoSet = photos.filter {$0.id == self.userId}
-        let photo = photos[indexPath.item].sizes[0].url
-        let url = URL (string: photo)
-        let image = converterURLtoImage(url: url!)
-        cell.photoImage.image = image
+    //    let photoSet = photos.filter {$0.id == self.userId}
+        let photo = photos[indexPath.item].sizes[2].url
+        guard let url = URL (string: photo) else {return cell}
+        if let image = cashedData.object(forKey: url.absoluteString as NSString) {
+            cell.photoImage.image = image
+            
+        } else {
+            let imageURL = converterURLtoImage(url: url)!
+            cashedData.setObject(imageURL, forKey: url.absoluteString as NSString)
+            cell.photoImage.image = imageURL
+            collectionView.reloadItems(at: [indexPath])
+        }
+
         return cell
     }
-    func pairPhotoAndRealm () {
+/*    func pairPhotoAndRealm () {
         guard let realm = try? Realm() else {return}
         let photo = realm.objects(Photos2.self)
         token = photo.observe { [weak self] (changes: RealmCollectionChange) in
@@ -80,6 +94,6 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
 
             }
         }
-    }
+    } */
     
 }

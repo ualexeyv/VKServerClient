@@ -37,6 +37,7 @@
 		4B448C6526D93203006A1592 /* NewsNameViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B448C6326D93203006A1592 /* NewsNameViewCell.xib */; };
 		4B448C6926D9321D006A1592 /* NewsPhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B448C6726D9321D006A1592 /* NewsPhotoViewCell.swift */; };
 		4B448C6A26D9321D006A1592 /* NewsPhotoViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B448C6826D9321D006A1592 /* NewsPhotoViewCell.xib */; };
+		4B448C8026DE022E006A1592 /* APIGroupOeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B448C7F26DE022D006A1592 /* APIGroupOeration.swift */; };
 		4B72620526A8130300479590 /* NewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72620426A8130300479590 /* NewsViewCell.swift */; };
 		4B72620826AAA60300479590 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72620726AAA60300479590 /* DBService.swift */; };
 		4B971B9926B3C4B90030D98F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B971B9826B3C4B80030D98F /* GoogleService-Info.plist */; };
@@ -82,6 +83,7 @@
 		4B448C6326D93203006A1592 /* NewsNameViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsNameViewCell.xib; sourceTree = "<group>"; };
 		4B448C6726D9321D006A1592 /* NewsPhotoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPhotoViewCell.swift; sourceTree = "<group>"; };
 		4B448C6826D9321D006A1592 /* NewsPhotoViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsPhotoViewCell.xib; sourceTree = "<group>"; };
+		4B448C7F26DE022D006A1592 /* APIGroupOeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGroupOeration.swift; sourceTree = "<group>"; };
 		4B72620426A8130300479590 /* NewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewCell.swift; sourceTree = "<group>"; };
 		4B72620726AAA60300479590 /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
 		4B971B9826B3C4B80030D98F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				4B971BB026B557BD0030D98F /* user.swift */,
 				4B971BB826B562790030D98F /* usersFB.swift */,
 				4B971BBB26BD09FC0030D98F /* newsCodable.swift */,
+				4B448C7F26DE022D006A1592 /* APIGroupOeration.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				4B0CFD57269822CA009CF027 /* Logger.swift in Sources */,
 				4B448C6926D9321D006A1592 /* NewsPhotoViewCell.swift in Sources */,
 				4B0CFD5226981CD6009CF027 /* GroupsViewController.swift in Sources */,
+				4B448C8026DE022E006A1592 /* APIGroupOeration.swift in Sources */,
 				4B448C5426D91A79006A1592 /* NewsPhotoTableViewCell.swift in Sources */,
 				4B0CFD63269D624E009CF027 /* URLconverter.swift in Sources */,
 				4B3FCDE726A7E7AA007F475D /* News.swift in Sources */,
