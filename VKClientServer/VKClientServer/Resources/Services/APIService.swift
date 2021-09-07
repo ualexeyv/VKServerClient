@@ -19,8 +19,24 @@ class APIService {
     let groupsExtraPath = "groups.get"
     let friendsExtraPath = "friends.get"
     let photosExtraPath = "photos.getAll"
-    let newsExtraPath = "wall.get"
+    let newsExtraPath = "newsfeed.get"
+    let usersExtraPath = "users.get"
     
+    func APIUsersRequest (completion: @escaping ([UserModel]) -> Void) {
+        let url = baseUrl+method+usersExtraPath
+        let userParameters: Parameters =
+            [ "fields": ["photo_50", "verified"],
+              "name_case": "Nom",
+              "user_ids": userId,
+              "access_token": apiKey,
+              "v": "5.130"]
+        AF.request(url, method: HTTPMethod.get, parameters: userParameters).responseData { response in
+            guard let data = response.data else {return}
+            guard let items = JSON(data).response.array else {return}
+            let userArray = items.map {UserModel(json: $0)}
+            completion (userArray)
+        }
+    }
     func APIFriendsRequest (completion: @escaping ([FriendsModel]) -> Void ) {
         
         let session = URLSession(configuration: .default)
@@ -130,17 +146,19 @@ class APIService {
         }
        
     }
-    func APINewsRequest (completion: @escaping ([NewsItem]) -> Void) {
+    func APINewsRequest (completion: @escaping (NewsRequest) -> Void) {
         let session = URLSession(configuration: .default)
         let path = method + newsExtraPath
         var urlConstractor = URLComponents()
+        let decoder = JSONDecoder()
         urlConstractor.scheme = "https"
         urlConstractor.host = "api.vk.com"
         urlConstractor.path = path
         urlConstractor.queryItems = [
-            URLQueryItem(name: "count", value: "1"),
+            URLQueryItem(name: "filters", value: "post"),
+            URLQueryItem(name: "count", value: "10"),
             URLQueryItem(name: "access_token", value: apiKey),
-            URLQueryItem(name: "owner_id", value: userId),
+//            URLQueryItem(name: "owner_id", value: userId),
             URLQueryItem(name: "v", value: "5.130"),
         ]
         
@@ -151,18 +169,18 @@ class APIService {
         let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
             NetworkLogger.log(response: (response as! HTTPURLResponse), data: data, error: error)
             guard let data = data else {return}
-            
             do {
-                //let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
-                
-                let newsRequest = try JSONDecoder().decode(NewsRequst.self, from: data)
-                
-                let userNews = newsRequest.response.newsItems
-                completion(userNews)
-            } catch {
-                print (error.localizedDescription)
+                var items: NewsRequest
+                items = try decoder.decode(NewsRequest.self, from: data)
+         //     let result = try decoder.decode(SafelyDecodedArray<NewsFeedModel>.self, from: data).result
+                completion(items)
+            } catch (let error) {
+                print(error.localizedDescription)
             }
+  //          guard let items = JSON(data).response.items.array else {return}
+ //           let news = items.map {News2(json: $0) }
             
+          
         })
         task.resume()
     }

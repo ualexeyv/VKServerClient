@@ -10,4 +10,6 @@ pod 'Alamofire'
 pod 'DynamicJSON'
 pod 'SwiftKeychainWrapper'
 pod 'RealmSwift'
+pod 'Firebase/Auth'
+pod 'Firebase/Database'
 end
