@@ -13,4 +13,5 @@ pod 'RealmSwift'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'SwiftyJSON'
+pod 'SDWebImage', '~> 5.0'
 end

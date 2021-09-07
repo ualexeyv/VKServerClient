@@ -60,7 +60,7 @@ class GroupsDB: VKDatabaseProtocol {
         try! mainRealm.commitWrite()
     }
 }
-class PhotoDB: VKDatabaseProtocol {
+/* class PhotoDB: VKDatabaseProtocol {
     let config = Realm.Configuration(schemaVersion: 4)
     lazy var mainRealm = try! Realm(configuration: config)
     
@@ -83,4 +83,4 @@ class PhotoDB: VKDatabaseProtocol {
     }
     
     
-}
+}*/

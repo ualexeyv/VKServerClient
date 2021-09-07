@@ -137,7 +137,7 @@ class APIService {
             print(json)
             var photos: [Photos2] = []
             let photosArray = json["response"]["items"].arrayValue
-            print(photosArray[0])
+            
             for (index, item) in photosArray.enumerated() {
                 DispatchQueue.global(qos: .userInteractive).async(group: dispatchGroupPhoto) {
                     do {

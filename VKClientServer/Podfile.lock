@@ -58,6 +58,9 @@ PODS:
   - Realm/Headers (10.10.0)
   - RealmSwift (10.10.0):
     - Realm (= 10.10.0)
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
   - SwiftKeychainWrapper (4.0.1)
   - SwiftyJSON (5.0.1)
 
@@ -67,6 +70,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database
   - RealmSwift
+  - SDWebImage (~> 5.0)
   - SwiftKeychainWrapper
   - SwiftyJSON
 
@@ -87,6 +91,7 @@ SPEC REPOS:
     - PromisesObjC
     - Realm
     - RealmSwift
+    - SDWebImage
     - SwiftKeychainWrapper
     - SwiftyJSON
 
@@ -106,9 +111,10 @@ SPEC CHECKSUMS:
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   Realm: f501df41a4222c67850c77cf135d472192ecf294
   RealmSwift: c69aadfc7db0d60075178d037c2f34ada73d5201
+  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: b47b1e35334f748fc5dfe5cd817f4540244584e9
+PODFILE CHECKSUM: 6608d8d9868add8c5d06c547bd816f4e7cdc1d7a
 
 COCOAPODS: 1.10.1

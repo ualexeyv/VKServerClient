@@ -37,9 +37,9 @@ struct PhotoResponse: Codable {
    
 }
 // MARK: - Item
-class Photos2: Object, Codable {
-    @objc dynamic var id: Int
-    @objc dynamic var ownerId: Int
+class Photos2: Codable {
+    var id: Int
+    var ownerId: Int
     var sizes: [Sizes]
  
 
@@ -49,13 +49,13 @@ class Photos2: Object, Codable {
         case sizes
  //       case comments, likes, reposts
     }
-    override static func primaryKey() -> String? {
-            return "id"
-    }
+//    override static func primaryKey() -> String? {
+//            return "id"
+//    }
     
 }
-class Sizes: Object, Codable {
-    @objc dynamic var url: String
+class Sizes: Codable {
+    var url: String
     
     enum CodingKeys: String, CodingKey {
         case url
